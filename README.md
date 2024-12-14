@@ -22,10 +22,10 @@ This is a simple console-based weather application. It allows users to check the
 ## Installation
 
 1. Clone this repository:
-git clone https://github.com/KIRILL100-10/weather-app.git
+git clone https://github.com/KIRILL100-10/weather_app.git
 
 2. Navigate to the project directory:
-cd weather-app
+cd weather_app
 
 3. Install the dependencies:
 pip install -r requirements.txt
