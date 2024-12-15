@@ -1,12 +1,12 @@
 import requests
 
 def get_weather(city):
-    api_key = '35cf7e4f317c014b92ea8cf0f7b02fd4'
+    api_key = 'your_key'
     url = f'https://api.openweathermap.org/data/2.5/weather?q={city}&units=metric&appid={api_key}'
     try:
         response = requests.get(url)
+        response_json = response.json()
         if response.status_code == 200:
-            response_json = response.json()
             print(f'City: {response_json['name']}')
             print(f'Temperature: {response_json['main']['temp']}°C')
             print(f'Description: {response_json['weather'][0]['description'].capitalize()}')
@@ -14,8 +14,17 @@ def get_weather(city):
             print(f'Wind speed: {response_json['wind']['speed']} m/s')
             print(f'Feels: {response_json['main']['feels_like']}°C')
             print(f'Pressure: {response_json['main']['pressure']} hPa')
-    except:
-        print('Error!')
+        else:
+            print('Error!')
+    except requests.exceptions.RequestException as e:
+        return f'Network error: {e}'
+    except KeyError:
+        return 'Unexpected API response. Please check your inputs'
+    except ValueError:
+        return 'Please enter a valid number for the city'
 
-city = input('Enter a city: ')
-get_weather(city=city)
+try:
+    city = input('Enter a city: ')
+    get_weather(city=city)
+except ValueError:
+    print('Invalid input. Please enter a numeric value for the city')
