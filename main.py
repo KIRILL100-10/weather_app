@@ -1,7 +1,7 @@
 import requests
 
 def get_weather(city):
-    api_key = 'your_key'
+    api_key = 'your_api_key'
     url = f'https://api.openweathermap.org/data/2.5/weather?q={city}&units=metric&appid={api_key}'
     try:
         response = requests.get(url)
@@ -21,7 +21,7 @@ def get_weather(city):
     except KeyError:
         return 'Unexpected API response. Please check your inputs'
     except ValueError:
-        return 'Please enter a valid number for the city'
+        return 'Please enter a valid city'
 
 try:
     city = input('Enter a city: ')
