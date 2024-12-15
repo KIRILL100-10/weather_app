@@ -16,7 +16,7 @@ This is a simple console-based weather application. It allows users to check the
 
 ## Prerequisites
 
-- Python 3.x
+- Python 3.10+
 - `requests` library
 
 ## Installation
