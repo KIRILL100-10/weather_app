@@ -7,15 +7,16 @@ def get_weather(city):
         response = requests.get(url)
         response_json = response.json()
         if response.status_code == 200:
-            print(f'City: {response_json['name']}')
-            print(f'Temperature: {response_json['main']['temp']}°C')
-            print(f'Description: {response_json['weather'][0]['description'].capitalize()}')
-            print(f'Humidity: {response_json['main']['humidity']}%')
-            print(f'Wind speed: {response_json['wind']['speed']} m/s')
-            print(f'Feels: {response_json['main']['feels_like']}°C')
-            print(f'Pressure: {response_json['main']['pressure']} hPa')
+            with open('weather.txt', 'w', encoding='utf-8') as file:
+                file.write(f'City: {response_json['name']}\n')
+                file.write(f'Temperature: {response_json['main']['temp']}°C\n')
+                file.write(f'Description: {response_json['weather'][0]['description'].capitalize()}\n')
+                file.write(f'Humidity: {response_json['main']['humidity']}%\n')
+                file.write(f'Wind speed: {response_json['wind']['speed']} m/s\n')
+                file.write(f'Feels like: {response_json['main']['feels_like']}°C\n')
+                file.write(f'Pressure: {response_json['main']['pressure']} hPa\n')
         else:
-            print('Error!')
+            return 'Error!'
     except requests.exceptions.RequestException as e:
         return f'Network error: {e}'
     except KeyError:
